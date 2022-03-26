@@ -1,7 +1,7 @@
 package logica;
 
 import java.sql.Date;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Proyecto {
 
@@ -9,12 +9,13 @@ public class Proyecto {
 	private String descripcion;
 	private Date fecha_inicio;
 	private Date fecha_final;
-	private ArrayList<Participante> Participantes = new ArrayList<Participante>();
+	private HashMap<String,Participante> Participantes = new HashMap<String,Participante>();
 	
 	
-	public void agregar_commit(Participante P)
-	{
-		Participantes.add(P);
+	public void agregar_participante(String nombre, String correo)
+	{	
+		Participante P = new Participante(nombre, correo);
+		Participantes.put(nombre, P);
 	}
 	
 	
@@ -36,31 +37,34 @@ public Proyecto(String nombre, String descripcion, Date fecha_inicio, Date fecha
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-//////////
+//------------------------------------------
 	public String getDescripcion() {
 		return descripcion;
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-//////////
+//------------------------------------------
 	public Date getFecha_inicio() {
 		return fecha_inicio;
 	}
 	public void setFecha_inicio(Date fecha_inicio) {
 		this.fecha_inicio = fecha_inicio;
 	}
-//////////
+//------------------------------------------
 	public Date getFecha_final() {
 		return fecha_final;
 	}
 	public void setFecha_final(Date fecha_final) {
 		this.fecha_final = fecha_final;
 	}
-//////////
-	public ArrayList<Participante> getParticipantes() {
+//------------------------------------------
+	public HashMap<String, Participante> getParticipantes() {
 		return Participantes;
 	}
+
+	
+	
 	
 	
 }

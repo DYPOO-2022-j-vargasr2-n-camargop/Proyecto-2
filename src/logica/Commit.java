@@ -19,7 +19,7 @@ public class Commit {
 	public void setTiempo_tardado(int tiempo_tardado) {
 		this.tiempo_tardado = tiempo_tardado;
 	}
-//////////
+//------------------------------------------
 	public String getComentario() {
 		return comentario;
 	}
