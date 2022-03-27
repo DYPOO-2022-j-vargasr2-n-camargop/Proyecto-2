@@ -1,36 +1,46 @@
 package logica;
 
+
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Participante {
 	
 	private String nombre;
 	private String Correo;
-	private ArrayList<Actividad> Actividades = new ArrayList<Actividad>();
+	private Boolean dueno;
+	private HashMap<String,ArrayList<Actividad>> Actividades = new HashMap<String,ArrayList<Actividad>>();
 	
-	public void agregar_actividad(String titulo, String descripcion, String autor, 
-			String tipo, LocalDateTime fecha, LocalTime hora_inicio)
+	public void agregar_actividadActividad(String titulo, String descripcion, String autor, String tipo)
 	{
-		Actividad Acti = new Actividad(titulo, descripcion, autor, tipo, fecha, hora_inicio);
-		Actividades.add(Acti);
-	}
+		
+		Actividad Acti = new Actividad(titulo,descripcion,autor, tipo);
+		
+		
+		if (  Actividades.containsKey(titulo) ) {
+			Actividades.get(titulo).add(Acti);
+		}
+		else {
+			ArrayList<Actividad> listActi  = new ArrayList<Actividad>();
+			listActi.add(Acti);
+			Actividades.put(titulo,listActi);
+		}
+    }
 	
 	
 	
 
 	
 	
-	
-	
-	
-	
 //Constructor
-	public Participante(String nombre, String correo) {
+	public Participante(String nombre, String correo, String dueño) {
 		super();
 		this.nombre = nombre;
-		Correo = correo;
+		this.Correo = correo;
+		this.dueno = Boolean.parseBoolean(dueño);
+		
 	}
 
 //getters and setters
@@ -48,8 +58,18 @@ public class Participante {
 		Correo = correo;
 	}
 //------------------------------------------
-	public ArrayList<Actividad> getActividades() {
+	public HashMap<String,ArrayList<Actividad>> getActividades() {
 		return Actividades;
+	}
+
+
+
+	public Boolean getDueno() {
+		return dueno;
+	}
+
+	public void setDueño(String dueno) {
+		this.dueno = Boolean.parseBoolean(dueno);
 	}
 	
 

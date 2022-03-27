@@ -1,5 +1,9 @@
 package logica;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.util.ArrayList;
 
@@ -9,30 +13,29 @@ public class Actividad {
 	private String descripcion;
 	private String autor;
 	private String tipo;
-	private LocalDateTime fecha; 
+	private LocalDate fecha; 
 	private LocalTime hora_inicio;
 	private LocalTime hora_final;
-	private ArrayList<Commit> Commits = new ArrayList<Commit>();
+	//private ArrayList<Commit> Commits = new ArrayList<Commit>();
 	
 	
-	public void agregar_commit(String comentario, int tiempo_tardado)
+	//public void agregar_commit(String comentario, int tiempo_tardado)
 	{
-		Commit com = new Commit(comentario,tiempo_tardado);
-		Commits.add(com);
+		//Commit com = new Commit(comentario,tiempo_tardado);
+		//Commits.add(com);
 	}
 	
 		
 	
 //Constructor
-public Actividad(String titulo, String descripcion, String autor, String tipo, LocalDateTime fecha,
-			LocalTime hora_inicio) {
+	public Actividad(String titulo, String descripcion, String autor, String tipo) {
 		super();
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.autor = autor;
 		this.tipo = tipo;
-		this.fecha = fecha;
-		this.hora_inicio = hora_inicio;	
+		this.fecha = LocalDate.now();
+		this.hora_inicio = LocalTime.now();	
 	}
 
 //getters and setters
@@ -64,12 +67,7 @@ public Actividad(String titulo, String descripcion, String autor, String tipo, L
 		this.tipo = tipo;
 	}
 //------------------------------------------
-	public LocalDateTime getFecha() {
-		return fecha;
-	}
-	public void setFecha(LocalDateTime fecha) {
-		this.fecha = fecha;
-	}
+
 //------------------------------------------
 	public LocalTime getHora_inicio() {
 		return hora_inicio;
@@ -85,9 +83,9 @@ public Actividad(String titulo, String descripcion, String autor, String tipo, L
 		this.hora_final = hora_final;
 	}
 //------------------------------------------
-	public ArrayList<Commit> getCommits() {
-		return Commits;
-	}
+	//public ArrayList<Commit> getCommits() {
+		//return Commits;}
+
 	
 	
 	
