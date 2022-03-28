@@ -95,6 +95,7 @@ public class consola {
 			System.out.print("Correo: "+P.getCorreo()+" |Dueño: "+P.getDueno()+"\n");
 			System.out.print("Actividades:"+P.getActividades().keySet()+"\n");
 			
+			
 		}
 				
 	}

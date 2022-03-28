@@ -76,22 +76,25 @@ public class Participante {
 					}	
 				}
 			} 
-			double promedio = 0;
+			
 			for (String key_tipo : time_type.keySet()) {
+				double promedio = 0;
 				int conteo = 0;
 				double suma_time = 0; 
 				for (String key_ListActi : Actividades.keySet()) {
 					for (Actividad Acti : Actividades.get(key_ListActi)) {
 						
-						if (Acti.getTipo()== key_tipo ) {
-							conteo += 1;
+						if (Acti.getTipo().equals(key_tipo)) {
+							
+							conteo ++ ;
+							
 							suma_time += Acti.tiempo_invertido();
+							
 						}
-						
 					}
 				}
 				promedio = suma_time/conteo;
-				time_type.put(key_tipo, promedio);
+				//time_type.put(key_tipo, promedio);
 				time_type.replace(key_tipo, promedio);
 			}
 		}catch (Exception e) {
@@ -122,13 +125,13 @@ public class Participante {
 				for (String key_ListActi : Actividades.keySet()) {
 					for (Actividad Acti : Actividades.get(key_ListActi)) {
 						
-						if (Acti.getFecha() == key_day ) {
-							tiempo_t += Acti.tiempo_invertido();
+						if (Acti.getFecha().equals(key_day) ) {
+							tiempo_t = tiempo_t + Acti.tiempo_invertido();
 						}
 						
 					}
 				}
-				time_day.put(key_day, tiempo_t);
+				//time_day.put(key_day, tiempo_t);
 				time_day.replace(key_day, tiempo_t);
 			}
 		}catch (Exception e) {
