@@ -13,11 +13,10 @@ public class Participante {
 	private Boolean dueno;
 	private HashMap<String,ArrayList<Actividad>> Actividades = new HashMap<String,ArrayList<Actividad>>();
 	
-	public void agregar_actividadActividad(String titulo, String descripcion, String autor, String tipo)
+	public void agregar_actividadActividad_valorespordefecto(String titulo, String descripcion, String autor,
+			String tipo ,String hora_final)
 	{
-		
-		Actividad Acti = new Actividad(titulo,descripcion,autor, tipo);
-		
+		Actividad Acti = new Actividad(titulo,descripcion,autor, tipo, hora_final);
 		
 		if (  Actividades.containsKey(titulo) ) {
 			Actividades.get(titulo).add(Acti);
@@ -30,6 +29,21 @@ public class Participante {
     }
 	
 	
+	public void agregar_actividadActividad_valoresmodificados(String titulo, String descripcion, String autor,
+			String tipo ,String fecha,String hora_incio ,String hora_final)
+	{
+		Actividad Acti = new Actividad(titulo,descripcion,autor, tipo,hora_final);
+		Acti.modificar_fecha_y_hora(fecha, hora_incio);
+		
+		if (  Actividades.containsKey(titulo) ) {
+			Actividades.get(titulo).add(Acti);
+		}
+		else {
+			ArrayList<Actividad> listActi  = new ArrayList<Actividad>();
+			listActi.add(Acti);
+			Actividades.put(titulo,listActi);
+		}
+    }
 	
 
 	

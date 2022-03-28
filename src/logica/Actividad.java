@@ -25,17 +25,29 @@ public class Actividad {
 		//Commits.add(com);
 	}
 	
+	public void modificar_fecha_y_hora(String fecha,String hora_inicio)
+	{
+		LocalDate f = LocalDate.parse(fecha);
+		setFecha(f);
+		LocalTime t = LocalTime.parse(hora_inicio);
+		setHora_inicio(t);
+	}
+	
+	public void tiempo_total() {
+		
+	}
 		
 	
 //Constructor
-	public Actividad(String titulo, String descripcion, String autor, String tipo) {
+	public Actividad(String titulo, String descripcion, String autor, String tipo, String hora_final) {
 		super();
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.autor = autor;
 		this.tipo = tipo;
-		this.fecha = LocalDate.now();
+		this.setFecha(LocalDate.now());
 		this.hora_inicio = LocalTime.now();	
+		this.hora_final = LocalTime.parse(hora_final);
 	}
 
 //getters and setters
@@ -85,6 +97,14 @@ public class Actividad {
 //------------------------------------------
 	//public ArrayList<Commit> getCommits() {
 		//return Commits;}
+
+
+	public LocalDate getFecha() {
+		return fecha;
+	}
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
 
 	
 	
