@@ -1,10 +1,12 @@
 package logica;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Participante {
 	
@@ -13,6 +15,7 @@ public class Participante {
 	private Boolean dueno;
 	private HashMap<String,ArrayList<Actividad>> Actividades = new HashMap<String,ArrayList<Actividad>>();
 	
+//------------------------------------------	
 	public void agregar_actividadActividad_valorespordefecto(String titulo, String descripcion, String autor,
 			String tipo ,String hora_final)
 	{
@@ -27,8 +30,7 @@ public class Participante {
 			Actividades.put(titulo,listActi);
 		}
     }
-	
-	
+//------------------------------------------			
 	public void agregar_actividadActividad_valoresmodificados(String titulo, String descripcion, String autor,
 			String tipo ,String fecha,String hora_incio ,String hora_final)
 	{
@@ -44,8 +46,98 @@ public class Participante {
 			Actividades.put(titulo,listActi);
 		}
     }
-	
+//------------------------------------------		
+	public int calcular_tiempo_invertidototal() {
+		int rta = 0;
+		try {
+			for (String key_ListActi : Actividades.keySet()) {
+				
+				for (Actividad Acti : Actividades.get(key_ListActi)) {
+					rta += Acti.tiempo_invertido();
+				}
+			} 
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return rta;
+	}
+//------------------------------------------	
+	public HashMap<String, Double> calcular_tiempo_promedio_tipoActividad() {
+		HashMap<String,Double> time_type = new HashMap<String,Double>();
+		
+		try {
+			
+			for (String key_ListActi : Actividades.keySet()) {
+				for (Actividad Acti : Actividades.get(key_ListActi)) {
+					
+					if (time_type.containsKey(Acti.getTipo()) == false) {
+						time_type.put(Acti.getTipo(),(double) 0);
+					}	
+				}
+			} 
+			double promedio = 0;
+			for (String key_tipo : time_type.keySet()) {
+				int conteo = 0;
+				double suma_time = 0; 
+				for (String key_ListActi : Actividades.keySet()) {
+					for (Actividad Acti : Actividades.get(key_ListActi)) {
+						
+						if (Acti.getTipo()== key_tipo ) {
+							conteo += 1;
+							suma_time += Acti.tiempo_invertido();
+						}
+						
+					}
+				}
+				promedio = suma_time/conteo;
+				time_type.put(key_tipo, promedio);
+				time_type.replace(key_tipo, promedio);
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		return time_type;
+	}
 
+//------------------------------------------
+	public HashMap<LocalDate, Double> calcular_tiempo_dia() {
+		HashMap<LocalDate,Double> time_day = new HashMap<LocalDate,Double>();
+		
+		try {
+			
+			for (String key_ListActi : Actividades.keySet()) {
+				for (Actividad Acti : Actividades.get(key_ListActi)) {
+					
+					if (time_day.containsKey(Acti.getFecha()) == false) {
+						time_day.put(Acti.getFecha(), (double) 0);
+					}	
+				}
+			} 
+			
+			for (LocalDate key_day : time_day.keySet()) {
+				double tiempo_t = 0; 
+				for (String key_ListActi : Actividades.keySet()) {
+					for (Actividad Acti : Actividades.get(key_ListActi)) {
+						
+						if (Acti.getFecha() == key_day ) {
+							tiempo_t += Acti.tiempo_invertido();
+						}
+						
+					}
+				}
+				time_day.put(key_day, tiempo_t);
+				time_day.replace(key_day, tiempo_t);
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		return time_day;
+	}
 	
 	
 //Constructor

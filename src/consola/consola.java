@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 import logica.Participante;
 import logica.Proyecto;
+import logica.Reporte;
 
 public class consola {
 	
@@ -116,7 +117,7 @@ public class consola {
 				String descripcion = this.br.readLine();
 				System.out.print("Ingrese de que tipo es la Actividad: ");
 				String tipo = this.br.readLine();
-				System.out.print("Ingrese la hora final de la Actividad:(hh:mm:ss) ");
+				System.out.print("Ingrese la hora final de la Actividad (hh:mm:ss): ");
 				String hora_final = this.br.readLine();
 				
 				this.proyecto.getParticipantes().get(autor).agregar_actividadActividad_valorespordefecto(titulo,
@@ -132,11 +133,11 @@ public class consola {
 				String descripcion = this.br.readLine();
 				System.out.print("Ingrese de que tipo es la Actividad: ");
 				String tipo = this.br.readLine();
-				System.out.print("Ingrese la fecha de la Actividad: ");
+				System.out.print("Ingrese la fecha de la Actividad:(yyyy-mm-dd) ");
 				String fecha = this.br.readLine();
-				System.out.print("Ingrese la hora Inicial de la Actividad:(hh:mm:ss)");
+				System.out.print("Ingrese la hora Inicial de la Actividad:(hh:mm:ss) ");
 				String hora_inicio = this.br.readLine();
-				System.out.print("Ingrese la hora final de la Actividad:(hh:mm:ss)");
+				System.out.print("Ingrese la hora final de la Actividad:(hh:mm:ss) ");
 				String hora_final = this.br.readLine();
 				
 				this.proyecto.getParticipantes().get(autor).agregar_actividadActividad_valoresmodificados(titulo, 
@@ -149,7 +150,24 @@ public class consola {
 		}
 	}
 //------------------------------------------
-	
+	public void ejecutar_relizar_reporte() {
+		try {
+			System.out.println("Ingrese el nombre del Participante del cual quiere el reporte");
+			String nombre = this.br.readLine();
+			Reporte rep = this.proyecto.realizar_reporte_participante(nombre);
+			System.out.println("\nNombre:"+nombre+" (Los tiempos son en minutos)"+"\n");
+			System.out.println("Tiempo Total Invertido: "+rep.getTiempo_invertido()+"\n");
+			System.out.println("Tiempo promedio por Tipo de Actividad");
+			System.out.println(rep.getTiempo_invertido_tipo()+"\n");
+			System.out.println("Tiempo promedio por dia");
+			System.out.println(rep.getTiempo_invertido_dia()+"\n");
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
 //------------------------------------------
 	
 //------------------------------------------
@@ -198,7 +216,7 @@ public class consola {
 					ejecutar_agregar_actividad();
 				}
 				else if(op == 7){
-	
+					ejecutar_relizar_reporte();
 				}
 				else if(op == 8){
 					

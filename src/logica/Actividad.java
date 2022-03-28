@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.util.ArrayList;
+import java.time.temporal.ChronoUnit;
 
 public class Actividad {
 
@@ -33,7 +34,8 @@ public class Actividad {
 		setHora_inicio(t);
 	}
 	
-	public void tiempo_total() {
+	public int tiempo_invertido() {
+		return (int) ChronoUnit.MINUTES.between(hora_inicio, hora_final);
 		
 	}
 		

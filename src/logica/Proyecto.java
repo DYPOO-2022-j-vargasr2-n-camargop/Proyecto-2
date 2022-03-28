@@ -29,6 +29,14 @@ public class Proyecto {
 		Participantes.remove(nombre);
 	}
 	
+	public Reporte realizar_reporte_participante(String nombre){
+		Participante P = Participantes.get(nombre);
+		Reporte rep = new Reporte(nombre, P.calcular_tiempo_invertidototal(), 
+				P.calcular_tiempo_promedio_tipoActividad(), P.calcular_tiempo_dia());
+		
+		return rep;
+	}
+	
 	
 //Constructor	
 public Proyecto(String nombre, String descripcion,String fecha_inicio,String fecha_final) {
