@@ -46,14 +46,30 @@ public class Participante {
 			Actividades.put(titulo,listActi);
 		}
     }
-//------------------------------------------		
-	public int calcular_tiempo_invertidototal() {
-		int rta = 0;
+//------------------------------------------	
+	public void agregar_actividadActividad_Crono(String titulo, String descripcion, String autor, String tipo, 
+			LocalDate fecha, LocalTime hora_inicial ,LocalTime hora_final, Double tiempo_invertido){
+		
+		Actividad Acti = new Actividad(titulo, descripcion, autor, tipo, hora_final.toString());
+		Acti.ActividadCrono(titulo, descripcion, autor, tipo, fecha, hora_inicial, hora_final, tiempo_invertido);
+		
+		if (  Actividades.containsKey(titulo) ) {
+			Actividades.get(titulo).add(Acti);
+		}
+		else {
+			ArrayList<Actividad> listActi  = new ArrayList<Actividad>();
+			listActi.add(Acti);
+			Actividades.put(titulo,listActi);
+		}
+    }
+//------------------------------------------	
+	public double calcular_tiempo_invertidototal() {
+		double rta = 0;
 		try {
 			for (String key_ListActi : Actividades.keySet()) {
 				
 				for (Actividad Acti : Actividades.get(key_ListActi)) {
-					rta += Acti.tiempo_invertido();
+					rta += Acti.getTiempo_invertido();
 				}
 			} 
 		}catch (Exception e) {
@@ -88,7 +104,7 @@ public class Participante {
 							
 							conteo ++ ;
 							
-							suma_time += Acti.tiempo_invertido();
+							suma_time += Acti.getTiempo_invertido();
 							
 						}
 					}
@@ -126,7 +142,7 @@ public class Participante {
 					for (Actividad Acti : Actividades.get(key_ListActi)) {
 						
 						if (Acti.getFecha().equals(key_day) ) {
-							tiempo_t = tiempo_t + Acti.tiempo_invertido();
+							tiempo_t = tiempo_t + Acti.getTiempo_invertido();
 						}
 						
 					}

@@ -17,6 +17,7 @@ public class Actividad {
 	private LocalDate fecha; 
 	private LocalTime hora_inicio;
 	private LocalTime hora_final;
+	private Double tiempo_invertido;
 	//private ArrayList<Commit> Commits = new ArrayList<Commit>();
 	
 	
@@ -34,8 +35,8 @@ public class Actividad {
 		setHora_inicio(t);
 	}
 	
-	public int tiempo_invertido() {
-		return (int) ChronoUnit.MINUTES.between(hora_inicio, hora_final);
+	public void tiempo_invertido() {
+		this.tiempo_invertido =  (double) ChronoUnit.SECONDS.between(hora_inicio, hora_final)/60;
 		
 	}
 		
@@ -50,6 +51,20 @@ public class Actividad {
 		this.setFecha(LocalDate.now());
 		this.hora_inicio = LocalTime.now();	
 		this.hora_final = LocalTime.parse(hora_final);
+		tiempo_invertido();
+	}
+	
+	public void ActividadCrono(String titulo, String descripcion, String autor, String tipo, 
+			LocalDate fecha, LocalTime hora_inicial ,LocalTime hora_final, Double tiempo_invertido) {
+		
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.autor = autor;
+		this.tipo = tipo;
+		this.setFecha(fecha);
+		this.hora_inicio = hora_inicial;	
+		this.hora_final = hora_final;
+		this.tiempo_invertido = tiempo_invertido;
 	}
 
 //getters and setters
@@ -106,6 +121,14 @@ public class Actividad {
 	}
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
+	}
+
+	public Double getTiempo_invertido() {
+		return tiempo_invertido;
+	}
+
+	public void setTiempo_invertido(Double tiempo_invertido) {
+		this.tiempo_invertido = tiempo_invertido;
 	}
 
 	

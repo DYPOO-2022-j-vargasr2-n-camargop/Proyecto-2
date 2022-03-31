@@ -2,6 +2,8 @@ package logica;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 
 public class Proyecto {
@@ -11,7 +13,7 @@ public class Proyecto {
 	private LocalDate fecha_inicio;
 	private LocalDate fecha_final;
 	private HashMap<String,Participante> Participantes = new HashMap<String,Participante>();
-	
+	private Cronometro crono = new Cronometro();
 	
 	public void agregar_participante(String nombre, String correo)
 	{	
@@ -36,6 +38,12 @@ public class Proyecto {
 		
 		return rep;
 	}
+	
+	
+	
+	
+////////////////////////////////
+////////////////////////////////
 	
 	
 //Constructor	

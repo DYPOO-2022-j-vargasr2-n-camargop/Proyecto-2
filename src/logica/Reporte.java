@@ -6,13 +6,13 @@ import java.util.HashMap;
 public class Reporte {
 	
 	private String nombre;
-	private int tiempo_invertido;
+	private double tiempo_invertido;
 	private HashMap<String, Double> tiempo_invertido_tipo;
 	private HashMap<LocalDate, Double> tiempo_invertido_dia;
 	
 	
 //Constructor	
-public Reporte(String nombre, int tiempo_invertido, HashMap<String, Double> tiempo_invertido_tipo,
+public Reporte(String nombre, double tiempo_invertido, HashMap<String, Double> tiempo_invertido_tipo,
 			HashMap<LocalDate, Double> tiempo_invertido_dia) {
 		super();
 		this.nombre = nombre;
@@ -41,7 +41,7 @@ public Reporte(String nombre, int tiempo_invertido, HashMap<String, Double> tiem
 	public void setTiempo_invertido_dia(HashMap<LocalDate, Double> tiempo_invertido_dia) {
 		this.tiempo_invertido_dia = tiempo_invertido_dia;
 	}
-	public int getTiempo_invertido() {
+	public double getTiempo_invertido() {
 		return tiempo_invertido;
 	}
 	public void setTiempo_invertido(int tiempo_invertido) {

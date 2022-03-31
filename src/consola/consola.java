@@ -3,8 +3,7 @@ package consola;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.time.LocalDate;
-
+import logica.Cronometro;
 import logica.Participante;
 import logica.Proyecto;
 import logica.Reporte;
@@ -171,6 +170,71 @@ public class consola {
 	}
 //------------------------------------------
 	
+	public void ejecutar_agregar_actividadCrono(){
+		
+		try {
+			
+			int opc;
+			Cronometro crono = new Cronometro();
+			do {
+				System.out.println("\nDigite una opcion:\n"
+						+"1. Iniciar\n"
+						+"2. Pausar\n"
+						+"3. reanudar\n"
+						+"4. Terminar\n"
+						+"5. Guardar Tiempo de la Actividad\n");
+				opc = Integer.parseInt(this.br.readLine()); 
+				
+				
+				
+				if(opc == 1) {
+					crono.iniciar_crono();
+					System.out.print("CRONOMETRO INICIADO\n");
+				}
+				else if(opc == 2){
+					System.out.print("CRONOMETRO PAUSADO\n");
+					crono.pausar_crono();
+				}
+				else if(opc == 3){
+					crono.reanudar();
+					System.out.print("CRONOMETRO REANUDADO");
+				}
+				else if(opc == 4){
+					crono.terminar_crono();
+					System.out.print("CRONOMETRO TERMINADO\n");
+					System.out.print("Tiempo Total (min): "+crono.getTiempo_invertido()+"\n");
+					System.out.print("Hora Inicio: "+crono.getHora_inicio()+"\n");
+					System.out.print("Hora Final: "+crono.getHora_final()+"\n");	
+				}
+				else if(opc == 5) {
+					
+					System.out.print("Ingrese el nombre del participante autor de la Actividad: ");
+					String autor = this.br.readLine();
+					System.out.print("Ingrese el titulo de la Actividad: ");
+					String titulo = this.br.readLine();
+					System.out.print("Ingrese una descripcion de la Actividad: ");
+					String descripcion = this.br.readLine();
+					System.out.print("Ingrese de que tipo es la Actividad: ");
+					String tipo = this.br.readLine();
+					System.out.print("\n");
+					
+					
+					this.proyecto.getParticipantes().get(autor).agregar_actividadActividad_Crono(titulo,
+							descripcion, autor, tipo, crono.getFecha(), crono.getHora_inicio(), crono.getHora_final(), 
+							crono.getTiempo_invertido());
+					
+				}
+				
+			}while(opc != 5);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+			
+		
+		
+	
 //------------------------------------------
 	
 //------------------------------------------
@@ -188,7 +252,7 @@ public class consola {
 						+ "5. Mostrar Info del Proyecto\n"
 						+ "6. Regsitar Activdidad\n"
 						+ "7. Realizar Reporte\n"
-						+ "8. Cronometrar Actividad\n"
+						+ "8. Cronometrar Actividad y Agregarla\n"
 						+ "0. Salir");
 	}
 	
@@ -196,8 +260,10 @@ public class consola {
 		try {
 			int op;
 			do {
+				
 				mostrar_menu();
 				op = Integer.parseInt(this.br.readLine()); 
+				
 				if(op == 1) {
 					crear_proyecto();
 				}
@@ -220,7 +286,7 @@ public class consola {
 					ejecutar_relizar_reporte();
 				}
 				else if(op == 8){
-					
+					ejecutar_agregar_actividadCrono();
 				}
 			}while(op != 0);
 			
