@@ -2,11 +2,9 @@ package logica;
 
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class Participante {
 	
@@ -36,6 +34,7 @@ public class Participante {
 	{
 		Actividad Acti = new Actividad(titulo,descripcion,autor, tipo,hora_final);
 		Acti.modificar_fecha_y_hora(fecha, hora_incio);
+		Acti.tiempo_invertido();
 		
 		if (  Actividades.containsKey(titulo) ) {
 			Actividades.get(titulo).add(Acti);

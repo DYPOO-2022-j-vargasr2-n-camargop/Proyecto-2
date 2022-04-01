@@ -1,11 +1,6 @@
 package logica;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.*;
-import java.util.ArrayList;
 import java.time.temporal.ChronoUnit;
 
 public class Actividad {
@@ -36,7 +31,7 @@ public class Actividad {
 	}
 	
 	public void tiempo_invertido() {
-		this.tiempo_invertido =  (double) ChronoUnit.SECONDS.between(hora_inicio, hora_final)/60;
+		this.tiempo_invertido =  (double) ChronoUnit.SECONDS.between(this.hora_inicio, this.hora_final)/60;
 		
 	}
 		
@@ -53,6 +48,7 @@ public class Actividad {
 		this.hora_final = LocalTime.parse(hora_final);
 		tiempo_invertido();
 	}
+	
 	
 	public void ActividadCrono(String titulo, String descripcion, String autor, String tipo, 
 			LocalDate fecha, LocalTime hora_inicial ,LocalTime hora_final, Double tiempo_invertido) {
