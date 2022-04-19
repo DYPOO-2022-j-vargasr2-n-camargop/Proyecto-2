@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import logica.Cronometro;
+import logica.ManejadorArchivos;
 import logica.Participante;
 import logica.Proyecto;
 import logica.Reporte;
@@ -39,6 +40,8 @@ public class consola {
 			// TODO: handle exception
 		}
 	}
+
+	
 //------------------------------------------
 	public void ejecutar_modificarfechafinal_proyecto() {
 		try {
@@ -253,6 +256,8 @@ public class consola {
 						+ "6. Regsitar Activdidad\n"
 						+ "7. Realizar Reporte\n"
 						+ "8. Cronometrar Actividad y Agregarla\n"
+						+ "9. Guardar Datos\n"
+						+ "10. Cargar Datos\n"
 						+ "0. Salir");
 	}
 	
@@ -288,12 +293,36 @@ public class consola {
 				else if(op == 8){
 					ejecutar_agregar_actividadCrono();
 				}
+				else if(op == 9){
+					guardardatos();
+				}
+				else if(op == 10){
+					leerdatos();
+				}
 			}while(op != 0);
 			
 
 			
 		} catch (Exception e) {
 			// TODO: handle exception
+			ejecutar_Aplicacion();
 		}
 	}
+	
+	//------------------------------------------
+	
+		public void guardardatos() {
+			ManejadorArchivos ma = new ManejadorArchivos();
+			ma.guardar_proyecto(this.proyecto);
+			ma.guardar_participantes(this.proyecto);
+			ma.guardar_actividades(this.proyecto);
+		}
+		public void leerdatos() {
+			ManejadorArchivos ma = new ManejadorArchivos();
+			this.proyecto = ma.leer_proyecto(this.proyecto);
+			ma.leer_participantes(this.proyecto);
+			ma.leer_actividades(this.proyecto);
+			
+				
+		}
 }
